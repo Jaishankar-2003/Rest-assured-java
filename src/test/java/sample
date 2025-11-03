@@ -1,0 +1,71 @@
+  // Base URL of your local API
+        RestAssured.baseURI = "http://localhost:3000";
+
+        // ------------------ GET ALL STUDENTS ------------------
+        System.out.println("---- GET ALL STUDENTS ----");
+        given()
+                .when()
+                .get("/students")
+                .then()
+                .statusCode(200)
+                .log().body();
+
+        // ------------------ POST A NEW STUDENT ------------------
+        System.out.println("---- CREATE NEW STUDENT ----");
+        String requestBody = """
+            {
+              "name": "John Doe",
+              "age": 23,
+              "gender": "Male",
+              "email": "john.doe@example.com",
+              "course": "Civil Engineering",
+              "year": "Final",
+              "marks": {
+                "maths": 80,
+                "physics": 75,
+                "chemistry": 78
+              },
+              "status": "active"
+            }
+            """;
+
+        Response postResponse = given()
+                .contentType(ContentType.JSON)
+                .body(requestBody)
+                .when()
+                .post("/students")
+                .then()
+                .statusCode(201)
+                .body("name", equalTo("John Doe"))
+                .extract().response();
+
+        String studentId = postResponse.jsonPath().getString("id");
+        System.out.println("Created student ID: " + studentId);
+
+        // ------------------ PATCH (UPDATE STUDENT) ------------------
+        System.out.println("---- UPDATE STUDENT ----");
+        String patchBody = """
+            {
+              "course": "AI & Robotics"
+            }
+            """;
+
+        given()
+                .contentType(ContentType.JSON)
+                .body(patchBody)
+                .when()
+                .patch("/students/" + studentId)
+                .then()
+                .statusCode(200)
+                .body("course", equalTo("AI & Robotics"))
+                .log().body();
+
+        // ------------------ DELETE STUDENT ------------------
+        System.out.println("---- DELETE STUDENT ----");
+        given()
+                .when()
+                .delete("/students/" + studentId)
+                .then()
+                .statusCode(200); // JSON Server returns 200 for delete success
+
+        System.out.println("Student with ID " + studentId + " deleted successfully.");
