@@ -69,3 +69,14 @@
                 .statusCode(200); // JSON Server returns 200 for delete success
 
         System.out.println("Student with ID " + studentId + " deleted successfully.");
+
+
+
+how many ways we create request body ( post )
+----------------------------------------
+1.hash mamp
+2 using org.json
+3 use pojo (plain old java object) in separate class
+4 use external json file
+
+
