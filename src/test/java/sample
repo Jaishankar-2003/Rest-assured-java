@@ -80,3 +80,11 @@ how many ways we create request body ( post )
 4 use external json file
 
 
+path & Query parameter
+-----------------------
+
+    https://reques.in/api/users?page=2&id=5
+---------------------------  ---------------
+      path parameter            Query
+
+

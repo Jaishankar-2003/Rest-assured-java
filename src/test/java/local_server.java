@@ -3,6 +3,7 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.*;
+import static jdk.jfr.internal.Logger.log;
 import static org.hamcrest.Matchers.*;
 
 public class local_server
@@ -12,14 +13,14 @@ public class local_server
     {
 
         // Base URL of your local API
-        RestAssured.baseURI = "http://localhost:3000";
+        RestAssured.baseURI = "https://reques.in/api/";
 
             given()
                     .when()
-                    .get("/students/")
+                    .get("/users")
                     .then()
-                    .statusCode(200)
-                    .log().body();
+                    .statusCode(200);
+                    //.log().body();
 
 
 

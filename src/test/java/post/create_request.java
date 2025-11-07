@@ -119,7 +119,8 @@ public class create_request
 
 
     @Test(priority = 1)
-    void testpost_external_json() throws FileNotFoundException {
+    void testpost_external_json() throws FileNotFoundException
+    {
 
         File f = new File("./body.json");
 
