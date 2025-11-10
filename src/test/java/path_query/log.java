@@ -15,7 +15,7 @@ public class log
     {
         given()
                 .when()
-                .get("https://reqres.in/api/users")
+                .get("http://localhost:3000/students")
                 .then()
                // .log().all()
                // .log().body()

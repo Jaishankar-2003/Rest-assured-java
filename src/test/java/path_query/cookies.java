@@ -56,10 +56,6 @@ public class cookies
            String Cookie_value = res.getCookie(k);
            System.out.println(k+"             " +Cookie_value);
        }
-
-
-
-
     }
 
 }
